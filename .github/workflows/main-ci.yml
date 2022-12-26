@@ -30,7 +30,7 @@ jobs:
       - name: Run pre-commit hooks
         uses: pre-commit/action@v2.0.3
       - name: Run sphinx
-        if: endsWith(inputs.project, 'praw')
+        if: endsWith(inputs.package, 'praw')
         run: sphinx-build -W --keep-going docs/ /tmp/foo
     strategy:
       matrix:
@@ -81,7 +81,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install .[ci,test]
       - name: Test with pytest
-        run: coverage run --source ${{ inputs.project }} --module pytest
+        run: coverage run --source ${{ inputs.package }} --module pytest
         env:
           ENSURE_NO_UNUSED_CASSETTES: 1
       - name: Submit to coveralls
