@@ -30,7 +30,7 @@ jobs:
       - name: Run pre-commit hooks
         uses: pre-commit/action@v2.0.3
       - name: Run sphinx
-        if: endsWith(inputs.project, core) != true
+        if: endsWith(inputs.project, 'praw')
         run: sphinx-build -W --keep-going docs/ /tmp/foo
     strategy:
       matrix:
